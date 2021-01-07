@@ -1,0 +1,24 @@
+{
+  "name": "07_StockTradingUI",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build_tail": "postcss  src/css/tailwind.css -o  src/public/build/tailwind.css",
+    "start": "parcel index.html",
+    "build": "parcel build index.html  ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.32.2"
+  },
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9.8.6",
+    "postcss": "^7.0.35",
+    "postcss-cli": "^8.3.1",
+    "regenerator-runtime": "^0.13.7",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+  }
+}
