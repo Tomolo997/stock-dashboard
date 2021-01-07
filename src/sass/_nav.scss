@@ -1,0 +1,83 @@
+.app__nav {
+  grid-row: 1/-1;
+  grid-column: 1/2;
+  background-color: #e4eaff;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__logo {
+    width: 100%;
+    height: 20%;
+    margin-top: 7rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  &__nav {
+    justify-self: flex-start;
+    width: 100%;
+    height: 50%;
+  }
+}
+
+.logo {
+  width: 7rem;
+  fill: #5d7de7;
+
+  &__h1 {
+    font-size: 2rem;
+    color: #5d7de7;
+    font-weight: lighter;
+    font-style: italic;
+  }
+}
+
+.nav__list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 4rem;
+
+  list-style: none;
+}
+
+.nav__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  vertical-align: center;
+  text-decoration: none;
+  height: 5rem;
+  cursor: pointer;
+  z-index: 1;
+  color: white;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 100%;
+    transition: all 0.4s ease;
+    background-color: #e2e2e2;
+    z-index: -2;
+  }
+  &:hover {
+    color: rgb(138, 5, 5);
+
+    &::before {
+      width: 100%;
+    }
+  }
+}
