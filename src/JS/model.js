@@ -1,28 +1,52 @@
 import regeneratorRuntime from 'regenerator-runtime';
 export const state = {
-  dataOpenDates: new Map(),
+  dataOpenDates: [],
   symbol: '',
+  dataTickers: [],
 };
 
-export async function getData(symbol) {
+export async function getData(symbol, limit) {
   try {
     const res = await fetch(
       `http://api.marketstack.com/v1/eod?access_key=345a3ca0ad78192423875a7895aa8875&symbols=${symbol}&limit=1000`
     );
     const data = await res.json();
-
-    for (const entry of data.data) {
-      state.dataOpenDates.set(entry.open, changeDate(entry.date));
-      state.symbol = symbol;
-    }
-
-    console.log(data);
+    return data;
+    // for (const entry of data.data) {
+    //   state.dataOpenDates.push({
+    //     stockPrice: entry.open,
+    //     day: changeDate(entry.date),
+    //   });
+    // }
   } catch (error) {
     console.log(error);
   }
 }
 
-function changeDate(str) {
+export function changeDate(str) {
   const dateString = str.slice(0, 10);
   return dateString;
+}
+
+export function changeName(str) {
+  const dateString = str.split(' ');
+  return dateString[0] + '.com';
+}
+
+export async function getTicker() {
+  try {
+    const res = await fetch(
+      `http://api.marketstack.com/v1/tickers?access_key=345a3ca0ad78192423875a7895aa8875`
+    );
+    const data = await res.json();
+    return data;
+    // for (const entry of data.data) {
+    //   state.dataOpenDates.push({
+    //     stockPrice: entry.open,
+    //     day: changeDate(entry.date),
+    //   });
+    // }
+  } catch (error) {
+    console.log(error);
+  }
 }

@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/sass/main.scss">
-  
     <script type="module" defer src="src/JS/app.js"></script>
 
     <title>Document</title>
@@ -32,7 +31,23 @@
         </div>
         <div class="app__menu">
           <div class="menu__mainStock">
-              <div class="stock__card card__1"></div>
+              <div class="stock__card card__1">
+                <div class="stock__canvas">
+                  <canvas id="myChart" width="250" height="200"></canvas>
+                </div>
+
+                <div class="stock__down__data">
+                       <div class="stock__logo">
+              <img src="https://logo.clearbit.com/facebook.com" class="logoCard">
+
+                         </div>
+                        <div class="stock__down__data__name">
+                                  <div class="stock__name"></div>
+                               <div class="stock__exchange"></div>
+                       </div>
+                  </div>
+              </div>
+
               <div class="stock__card card__2"></div>
               <div class="stock__card card__3"></div>
           </div>
