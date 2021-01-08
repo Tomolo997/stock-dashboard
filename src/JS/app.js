@@ -2,6 +2,8 @@ import * as model from './model';
 var ctx = document.getElementById('myChart').getContext('2d');
 var Chart = require('chart.js');
 const logoDiv = document.querySelector('.stock__logo');
+const nameSPAN = document.querySelector('.stockName__span');
+const stockSymbol = document.querySelector('.stockSymbol__span');
 function getDatAndDisplayGraph() {
   model.getTicker().then(res => {
     for (const entry of res.data) {
@@ -10,8 +12,20 @@ function getDatAndDisplayGraph() {
         symbol: entry.symbol,
       });
     }
+
+    setTimeout(() => {
+      let getWebsite = [];
+      getWebsite = model.state.dataTickers.filter(
+        el => el.symbol === model.state.symbol
+      );
+      const htmlIMG = `<img src="https://logo.clearbit.com/${getWebsite[0].name}" class="logoCard">`;
+      logoDiv.innerHTML = htmlIMG;
+
+      nameSPAN.textContent = `${model.changeNameForHTML(getWebsite[0].name)}`;
+      stockSymbol.textContent = `${getWebsite[0].symbol}`;
+    }, 200);
   });
-  model.getData('fb').then(res => {
+  model.getData('fb', 1000).then(res => {
     model.state.symbol = res.data[2].symbol;
     const xAxis = [];
     const xAxisDates = [];
@@ -52,6 +66,7 @@ function getDatAndDisplayGraph() {
         ],
       },
       options: {
+        legend: { display: false },
         scaleShowLabels: false,
         scales: {
           yAxes: [
@@ -62,7 +77,8 @@ function getDatAndDisplayGraph() {
               },
               ticks: {
                 beginAtZero: false,
-                suggestedMin: 100,
+                suggestedMin: Math.min.apply(Math, dataX),
+                suggestedMax: Math.max.apply(Math, dataX),
               },
             },
           ],

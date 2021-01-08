@@ -215,17 +215,38 @@ body {
 .stock__name {
   height: 50%;
   width: 100%;
-  background-color: #04043d;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .stock__exchange {
   height: 50%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
   width: 100%;
-  background-color: #ff002b;
 }
 
 .logoCard {
   width: 5rem;
+  opacity: 1;
+}
+
+.stockName__span {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: black;
+}
+
+.stockSymbol__span {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: black;
 }
 
 /*# sourceMappingURL=/main.2026268b.css.map */

@@ -8,7 +8,7 @@ export const state = {
 export async function getData(symbol, limit) {
   try {
     const res = await fetch(
-      `http://api.marketstack.com/v1/eod?access_key=345a3ca0ad78192423875a7895aa8875&symbols=${symbol}&limit=1000`
+      `http://api.marketstack.com/v1/eod?access_key=345a3ca0ad78192423875a7895aa8875&symbols=${symbol}&limit=${limit}`
     );
     const data = await res.json();
     return data;
@@ -49,4 +49,8 @@ export async function getTicker() {
   } catch (error) {
     console.log(error);
   }
+}
+export function changeNameForHTML(str) {
+  const dateString = str.slice(0, -4);
+  return dateString;
 }

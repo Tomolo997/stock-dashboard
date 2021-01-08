@@ -878,6 +878,7 @@ exports.getData = getData;
 exports.changeDate = changeDate;
 exports.changeName = changeName;
 exports.getTicker = getTicker;
+exports.changeNameForHTML = changeNameForHTML;
 exports.state = void 0;
 
 var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
@@ -908,7 +909,7 @@ function _getData() {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return fetch("http://api.marketstack.com/v1/eod?access_key=345a3ca0ad78192423875a7895aa8875&symbols=".concat(symbol, "&limit=1000"));
+            return fetch("http://api.marketstack.com/v1/eod?access_key=345a3ca0ad78192423875a7895aa8875&symbols=".concat(symbol, "&limit=").concat(limit));
 
           case 3:
             res = _context.sent;
@@ -981,6 +982,11 @@ function _getTicker() {
     }, _callee2, null, [[0, 10]]);
   }));
   return _getTicker.apply(this, arguments);
+}
+
+function changeNameForHTML(str) {
+  var dateString = str.slice(0, -4);
+  return dateString;
 }
 },{"regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/moment/moment.js":[function(require,module,exports) {
 var define;
@@ -22852,6 +22858,8 @@ var ctx = document.getElementById('myChart').getContext('2d');
 var Chart = require('chart.js');
 
 var logoDiv = document.querySelector('.stock__logo');
+var nameSPAN = document.querySelector('.stockName__span');
+var stockSymbol = document.querySelector('.stockSymbol__span');
 
 function getDatAndDisplayGraph() {
   model.getTicker().then(function (res) {
@@ -22871,8 +22879,19 @@ function getDatAndDisplayGraph() {
     } finally {
       _iterator.f();
     }
+
+    setTimeout(function () {
+      var getWebsite = [];
+      getWebsite = model.state.dataTickers.filter(function (el) {
+        return el.symbol === model.state.symbol;
+      });
+      var htmlIMG = "<img src=\"https://logo.clearbit.com/".concat(getWebsite[0].name, "\" class=\"logoCard\">");
+      logoDiv.innerHTML = htmlIMG;
+      nameSPAN.textContent = "".concat(model.changeNameForHTML(getWebsite[0].name));
+      stockSymbol.textContent = "".concat(getWebsite[0].symbol);
+    }, 200);
   });
-  model.getData('fb').then(function (res) {
+  model.getData('fb', 1000).then(function (res) {
     model.state.symbol = res.data[2].symbol;
     var xAxis = [];
     var xAxisDates = [];
@@ -22923,6 +22942,9 @@ function getDatAndDisplayGraph() {
         }]
       },
       options: {
+        legend: {
+          display: false
+        },
         scaleShowLabels: false,
         scales: {
           yAxes: [{
@@ -22932,7 +22954,8 @@ function getDatAndDisplayGraph() {
             },
             ticks: {
               beginAtZero: false,
-              suggestedMin: 100
+              suggestedMin: Math.min.apply(Math, dataX),
+              suggestedMax: Math.max.apply(Math, dataX)
             }
           }],
           xAxes: [{
