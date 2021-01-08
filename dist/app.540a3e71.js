@@ -966,8 +966,17 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-model.getData('AAPL');
-console.log(model.state);
+fetch('https://apidojo-yahoo-finance-v1.p.rapidapi.com/auto-complete?q=tesla&region=US', {
+  method: 'GET',
+  headers: {
+    'x-rapidapi-key': 'cb87a1d8e3msh720b35361aef2c4p108c3bjsn6a7e31b76186',
+    'x-rapidapi-host': 'apidojo-yahoo-finance-v1.p.rapidapi.com'
+  }
+}).then(function (response) {
+  console.log(response);
+}).catch(function (err) {
+  console.error(err);
+});
 },{"./model.js":"src/JS/model.js"}],"../../../../../../../AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -996,7 +1005,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54724" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50229" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
