@@ -249,4 +249,26 @@ body {
   color: black;
 }
 
+.last__x__days {
+  height: 2rem;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.div__last__x_days {
+  height: 100%;
+  z-index: 10000;
+}
+
+.a__last__x_days {
+  cursor: pointer;
+}
+
+.active {
+  font-weight: bold;
+  color: #5d7de7;
+}
+
 /*# sourceMappingURL=/main.2026268b.css.map */

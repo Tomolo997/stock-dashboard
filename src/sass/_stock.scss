@@ -79,3 +79,25 @@
   font-weight: bold;
   color: black;
 }
+
+.last__x__days {
+  height: 2rem;
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.div__last__x_days {
+  height: 100%;
+  z-index: 10000;
+}
+
+.a__last__x_days {
+  cursor: pointer;
+}
+
+.active {
+  font-weight: bold;
+  color: rgb(93, 125, 231);
+}
