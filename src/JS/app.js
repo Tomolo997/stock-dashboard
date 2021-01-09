@@ -52,7 +52,7 @@ function getDatAndDisplayGraph() {
     console.log(xAxisRev);
     //filtriramo podatke
     last5Day.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, 6);
+      sliceTHeData(xAxisRev, -6, -1);
       e.target.classList.add('active');
       last1Month.classList.remove('active');
       last6Months.classList.remove('active');
@@ -60,22 +60,36 @@ function getDatAndDisplayGraph() {
     });
 
     last1Month.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, 31);
+      sliceTHeData(xAxisRev, -31, -1);
+      e.target.classList.add('active');
+      last5Day.classList.remove('active');
+      last6Months.classList.remove('active');
+      last1Year.classList.remove('active');
     });
 
     last6Months.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, 180);
+      sliceTHeData(xAxisRev, -180, -1);
+      e.target.classList.add('active');
+
+      last5Day.classList.remove('active');
+      last1Month.classList.remove('active');
+      last1Year.classList.remove('active');
     });
 
     last1Year.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, -1);
+      sliceTHeData(xAxisRev, 0, -1);
+      e.target.classList.add('active');
+
+      last5Day.classList.remove('active');
+      last1Month.classList.remove('active');
+      last6Months.classList.remove('active');
     });
 
     displaGraph(xAxisRev);
   });
 
-  function sliceTHeData(arr, to) {
-    const arraySliced = arr.slice(0, to);
+  function sliceTHeData(arr, from, to) {
+    const arraySliced = arr.slice(from, to);
     console.log(arraySliced);
     lineChart.destroy();
     displaGraph(arraySliced);

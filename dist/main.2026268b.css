@@ -191,8 +191,9 @@ body {
 }
 
 .stock__canvas {
-  width: 90%;
   height: 65%;
+  position: relative;
+  top: 1rem;
 }
 
 .stock__down__data {

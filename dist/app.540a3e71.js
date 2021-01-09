@@ -918,19 +918,20 @@ function _getData() {
 
           case 6:
             data = _context.sent;
+            console.log(data);
             return _context.abrupt("return", data);
 
-          case 10:
-            _context.prev = 10;
+          case 11:
+            _context.prev = 11;
             _context.t0 = _context["catch"](0);
             console.log(_context.t0);
 
-          case 13:
+          case 14:
           case "end":
             return _context.stop();
         }
       }
-    }, _callee, null, [[0, 10]]);
+    }, _callee, null, [[0, 11]]);
   }));
   return _getData.apply(this, arguments);
 }
@@ -22929,26 +22930,38 @@ function getDatAndDisplayGraph() {
     console.log(xAxisRev); //filtriramo podatke
 
     last5Day.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, 6);
+      sliceTHeData(xAxisRev, -6, -1);
       e.target.classList.add('active');
       last1Month.classList.remove('active');
       last6Months.classList.remove('active');
       last1Year.classList.remove('active');
     });
     last1Month.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, 31);
+      sliceTHeData(xAxisRev, -31, -1);
+      e.target.classList.add('active');
+      last5Day.classList.remove('active');
+      last6Months.classList.remove('active');
+      last1Year.classList.remove('active');
     });
     last6Months.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, 180);
+      sliceTHeData(xAxisRev, -180, -1);
+      e.target.classList.add('active');
+      last5Day.classList.remove('active');
+      last1Month.classList.remove('active');
+      last1Year.classList.remove('active');
     });
     last1Year.addEventListener('click', function (e) {
-      sliceTHeData(xAxisRev, -1);
+      sliceTHeData(xAxisRev, 0, -1);
+      e.target.classList.add('active');
+      last5Day.classList.remove('active');
+      last1Month.classList.remove('active');
+      last6Months.classList.remove('active');
     });
     displaGraph(xAxisRev);
   });
 
-  function sliceTHeData(arr, to) {
-    var arraySliced = arr.slice(0, to);
+  function sliceTHeData(arr, from, to) {
+    var arraySliced = arr.slice(from, to);
     console.log(arraySliced);
     lineChart.destroy();
     displaGraph(arraySliced);
@@ -23036,7 +23049,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55550" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50149" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
